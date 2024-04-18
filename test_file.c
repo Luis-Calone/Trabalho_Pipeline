@@ -13,12 +13,12 @@ typedef struct node
     struct node *next;
 } Node;
 
-typedef struct stack
+typedef struct line
 {
     Node *instructionNode;
     int instruction;
-    struct stack *next;
-} Stack;
+    struct line *next;
+} Line;
 
 Node *startInstructions(int flag)
 {
@@ -35,12 +35,12 @@ Node *startInstructions(int flag)
     return temp;
 }
 
-Stack *startStack(int flagS)
+Line *startStack(int flagS)
 {
     if (flagS <= 0)
         return NULL;
 
-    Stack *temp = (Stack *)malloc(sizeof(Stack));
+    Line *temp = (Line *)malloc(sizeof(Line));
     temp->instruction = flagS;
     temp->instructionNode = startInstructions(0);
     temp->next = startStack(flagS - 1);
@@ -48,12 +48,12 @@ Stack *startStack(int flagS)
     return temp;
 }
 
-long stackScan(Stack *stack)
+long stackScan(Line *stack)
 {
     if (stack == NULL)
         return 0;
 
-    Stack *aux = stack;
+    Line *aux = stack;
     Node *temp;
     long tempo = 0;
     while (aux != NULL)
@@ -75,7 +75,7 @@ long stackScan(Stack *stack)
 int main()
 {
     srand(time(NULL));
-    Stack *teste = startStack(10);
+    Line *teste = startStack(10);
 
     printf("%ld\n", stackScan(teste));
 
