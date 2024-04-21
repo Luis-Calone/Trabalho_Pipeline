@@ -16,19 +16,18 @@ enum
 
 class Instruction
 {
+protected:
     string name;
     int type;
     Memory *mem;
-    int memReg;
     int position;
 
 public:
     Instruction();
-    Instruction(int type, Memory *mem, int reg, int position);
-    ~Instruction();
+    Instruction(int type, Memory *mem, int position);
+    virtual ~Instruction();
 
-    int setMemory(Memory *mem, int reg);
-    int getMemoryValue(int reg);
+    int setMemory(Memory *mem);
 
     int setPosition(int position);
     int getPosition();

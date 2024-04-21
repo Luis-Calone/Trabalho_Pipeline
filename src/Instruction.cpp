@@ -5,32 +5,25 @@ Instruction::Instruction()
 {
     this->type = BUSCA;
     this->mem = NULL;
-    this->memReg = 0;
     this->position = 0;
 }
 
-Instruction::Instruction(int type,Memory *mem, int reg, int position)
+Instruction::Instruction(int type, Memory *mem, int position)
 {
     setType(type);
-    setMemory(mem, reg);
+    setMemory(mem);
     this->position = position;
 }
 
 Instruction::~Instruction() {}
 
-int Instruction::setMemory(Memory *mem, int reg)
+int Instruction::setMemory(Memory *mem)
 {
-    if (!mem || reg < 0)
+    if (!mem)
         return 0;
 
     this->mem = mem;
-    this->memReg = reg;
     return 1;
-}
-
-int Instruction::getMemoryValue(int reg)
-{
-    return this->mem->getRegistrador(reg);
 }
 
 int Instruction::setPosition(int position)

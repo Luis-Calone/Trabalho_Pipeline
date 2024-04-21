@@ -3,16 +3,24 @@
 #include "inc/Bloco.h"
 #include "inc/Memory.h"
 #include "inc/Instruction.h"
+#include "inc/Busca.h"
 
 int main()
 {
     Memory *mem = new Memory;
-    Instruction *I1 = new Instruction(BUSCA, mem, 0, 0);
-    
+    Busca *I1 = new Busca;
+    Bloco *conjunto = new Bloco;
 
-    std::cout << "Instrucao: " << I1->getType() << std::endl
-              << "Valor na memoria: " << I1->getMemoryValue(0) << std::endl;
+    I1->setMemReg(3);
+    conjunto->addInstruction(I1);
 
+    // std::cout << "Instrucao: " << << std::endl
+    //   << "Valor na memoria: " << I1->getMemoryValue(0) << std::endl;
+
+    conjunto->printInstructions();
+
+    conjunto->~Bloco();
+    delete conjunto;
     delete mem;
     delete I1;
 

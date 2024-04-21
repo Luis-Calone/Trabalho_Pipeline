@@ -4,6 +4,7 @@
 #include <iostream>
 #include <list>
 #include "Instruction.h"
+#include "Busca.h"
 
 class Bloco
 {
@@ -16,6 +17,8 @@ public:
 
     int addInstruction(Instruction *instruction);
     int removeInstruction();
+    void printInstructions();
+
 };
 
 #endif

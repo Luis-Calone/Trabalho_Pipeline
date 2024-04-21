@@ -6,7 +6,7 @@ Bloco::Bloco(){};
 
 Bloco::~Bloco()
 {
-    for (auto i : instructions)
+    for (auto &i : instructions)
         delete i;
 }
 
@@ -28,4 +28,24 @@ int Bloco::removeInstruction()
     this->instructions.pop_back();
     this->_I_inBlock--;
     return 1;
+}
+
+void Bloco::printInstructions()
+{
+    for (auto &i : this->instructions)
+    {
+        std::cout << "Nome: " << i->getType() << std::endl;
+
+        Busca *busca = dynamic_cast<Busca *>(i);
+
+        std::cout << "TESTE" << std::endl;
+        if (!busca)
+        {
+            std::cout << "ERRO CONVERSAO!" << std::endl;
+        }
+        else
+        {
+            std::cout << "Valor na Memoria: " << busca->getMemoryValue() << std::endl;
+        }
+    }
 }
