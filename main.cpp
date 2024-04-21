@@ -11,6 +11,7 @@ int main()
     Busca *I1 = new Busca;
     Bloco *conjunto = new Bloco;
 
+    I1->setMemory(mem);
     I1->setMemReg(3);
     conjunto->addInstruction(I1);
 

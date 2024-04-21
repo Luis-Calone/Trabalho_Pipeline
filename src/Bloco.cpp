@@ -38,14 +38,7 @@ void Bloco::printInstructions()
 
         Busca *busca = dynamic_cast<Busca *>(i);
 
-        std::cout << "TESTE" << std::endl;
-        if (!busca)
-        {
-            std::cout << "ERRO CONVERSAO!" << std::endl;
-        }
-        else
-        {
+        if (busca)
             std::cout << "Valor na Memoria: " << busca->getMemoryValue() << std::endl;
         }
-    }
 }
