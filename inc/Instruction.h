@@ -24,7 +24,7 @@ class Instruction
 
 public:
     Instruction();
-    Instruction(int type, int reg, int position);
+    Instruction(int type, Memory *mem, int reg, int position);
     ~Instruction();
 
     int setMemory(Memory *mem, int reg);
