@@ -1,19 +1,28 @@
 #include <iostream>
 #include "../inc/Memory.h"
 
-int Memory::setRegistrador(int valor, int reg)
+int Memory::setRegistrador(int reg)
 {
-    if (reg<0)
+    if (reg < 0)
         return 0;
-    
-    this->registrador[reg] = valor;
+
+    this->regWrite = reg;
     return 1;
 }
 
-int Memory::getRegistrador(int reg)
+int Memory::setValue(int value)
 {
-    if (reg<0)
-        return -1;
+    if (this->regWrite < 0)
+        return 0;
     
-    return this->registrador[reg];
+    this->registrador[this->regWrite] = value;
+    return 1;
+}
+
+int Memory::getRegistrador()
+{
+    if (this->regWrite < 0)
+        return -1;
+
+    return this->registrador[regWrite];
 }

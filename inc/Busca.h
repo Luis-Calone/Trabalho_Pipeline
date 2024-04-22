@@ -6,14 +6,19 @@
 
 class Busca : public Instruction
 {
-    int memReg;
+    int write;
+    int r1;
+    int r2;
 
 public:
     Busca();
     ~Busca();
 
-    int setMemReg(int memReg);
-    int getMemoryValue();
+    int setMemReg(int write, int r1, int r2);
+    int getWrite();
+    int getRegA();
+    int getRegB();
+    //int getMemoryValue();
 };
 
 #endif
