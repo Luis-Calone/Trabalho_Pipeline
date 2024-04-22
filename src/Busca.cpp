@@ -13,7 +13,7 @@ int Busca::setMemReg(int write, int r1, int r2)
     if (write < 0 || r1 < 0 || r2 < 0)
         return 0;
 
-    this->write = write;
+    this->mem->setRegistrador(write);
     this->r1 = r1;
     this->r2 = r2;
     return 1;

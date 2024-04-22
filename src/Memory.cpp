@@ -19,10 +19,10 @@ int Memory::setValue(int value)
     return 1;
 }
 
-int Memory::getRegistrador()
+int Memory::getRegistrador(int reg)
 {
-    if (this->regWrite < 0)
+    if (reg< 0)
         return -1;
 
-    return this->registrador[regWrite];
+    return this->registrador[reg];
 }
