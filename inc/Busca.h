@@ -6,7 +6,6 @@
 
 class Busca : public Instruction
 {
-    int write;
     int r1;
     int r2;
 
