@@ -13,6 +13,8 @@ public:
     Armazena();
     ~Armazena();
 
+    int setExecutador(Executa *executador);
+
     int setMemoryV();
     int getMemory();
 };

@@ -64,6 +64,11 @@ int Bloco::removeInstruction()
     return 1;
 }
 
+int Bloco::configura()
+{
+    
+}
+
 void Bloco::printInstructions()
 {
     for (auto &i : this->instructions)

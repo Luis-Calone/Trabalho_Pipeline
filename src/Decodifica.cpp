@@ -38,3 +38,9 @@ int Decodifica::getValueRegB()
 {
     return this->valueRegB;
 }
+
+int Decodifica::setBusca(Busca *busca)
+{
+    this->busca = busca;
+    return 1;
+}

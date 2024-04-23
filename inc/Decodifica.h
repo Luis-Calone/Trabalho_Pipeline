@@ -15,6 +15,8 @@ public:
     Decodifica();
     ~Decodifica();
 
+    int setBusca(Busca *busca);
+
     int setValueRegA();
     int getValueRegA();
 

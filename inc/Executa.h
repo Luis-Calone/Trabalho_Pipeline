@@ -18,6 +18,8 @@ public:
     Executa();
     ~Executa();
 
+    int setDecodificador(Decodifica *decodificador);
+
     int setA();
     int setB();
 

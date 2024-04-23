@@ -30,6 +30,12 @@ int Executa::chooseOP()
     }
 }
 
+int Executa::setDecodificador(Decodifica *decodificador)
+{
+    this->decodificador = decodificador;
+    return 1;
+}
+
 int Executa::add()
 {
     this->result = this->a + this->b;

@@ -41,6 +41,8 @@ public:
     Bloco();
     ~Bloco();
 
+    int configura();
+
     int addInstruction(Instruction *instruction);
     int removeInstruction();
     void printInstructions();

@@ -19,3 +19,9 @@ int Armazena::getMemory()
 {
     return this->mem->getRegistrador();
 }
+
+int Armazena::setExecutador(Executa *executador)
+{
+    this->executador = executador;
+    return 1;
+}

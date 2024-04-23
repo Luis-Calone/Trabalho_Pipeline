@@ -16,6 +16,13 @@ void insereMem(Memory *mem, Busca *a, Decodifica *b, Executa *c, Armazena *d)
     d->setMemory(mem);
 }
 
+void conecta(Busca *a, Decodifica *b, Executa *c, Armazena *d)
+{
+    b->setBusca(a);
+    c->setDecodificador(b);
+    d->setExecutador(c);
+}
+
 int main()
 {
     Memory *mem = new Memory;
