@@ -21,6 +21,7 @@ public:
     int setA();
     int setB();
 
+    int chooseOP();
     int times();
     int sub();
     int add();

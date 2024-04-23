@@ -13,7 +13,7 @@ public:
     Armazena();
     ~Armazena();
 
-    int setMemory();
+    int setMemoryV();
     int getMemory();
 };
 

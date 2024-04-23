@@ -18,6 +18,7 @@ class Instruction
 {
 protected:
     string name;
+    int command;
     int type;
     Memory *mem;
     int position;
@@ -26,6 +27,8 @@ public:
     Instruction();
     Instruction(int type, Memory *mem, int position);
     virtual ~Instruction();
+
+    int setCommand(int command);
 
     int setMemory(Memory *mem);
 

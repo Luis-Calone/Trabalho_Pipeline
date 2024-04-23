@@ -3,6 +3,7 @@
 
 Instruction::Instruction()
 {
+    this->name = "";
     this->type = BUSCA;
     this->mem = NULL;
     this->position = 0;
@@ -32,6 +33,13 @@ int Instruction::setPosition(int position)
         return 0;
 
     this->position = position;
+    return 1;
+}
+
+int Instruction::setCommand(int command)
+{
+    this->command = command;
+
     return 1;
 }
 

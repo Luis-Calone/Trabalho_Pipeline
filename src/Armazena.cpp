@@ -4,11 +4,12 @@
 Armazena::Armazena()
 {
     this->type = ARMAZENAR;
+    this->executador = NULL;
 }
 
 Armazena::~Armazena() {}
 
-int Armazena::setMemory()
+int Armazena::setMemoryV()
 {
     this->mem->setValue(this->executador->getResult());
     return 1;

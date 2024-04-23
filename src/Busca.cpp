@@ -4,6 +4,8 @@
 Busca::Busca()
 {
     this->type = BUSCA;
+    this->r1 = -1;
+    this->r2 = -1;
 }
 
 Busca::~Busca() {}

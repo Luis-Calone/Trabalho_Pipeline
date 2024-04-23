@@ -4,6 +4,9 @@
 Decodifica::Decodifica()
 {
     this->type = DECODIFICAR;
+    this->busca = NULL;
+    this->valueRegA = 0;
+    this->valueRegB = 0;
 }
 
 Decodifica::~Decodifica() {}
