@@ -35,6 +35,7 @@ int Busca::getRegB()
     return this->mem->getRegistrador(this->r2);
 }
 
+/*
 int Busca::getWrite()
 {
     if (write < 0)
@@ -43,7 +44,6 @@ int Busca::getWrite()
     return this->write;
 }
 
-/*
 int Busca::getMemoryValue()
 {
     return this->mem->getRegistrador();

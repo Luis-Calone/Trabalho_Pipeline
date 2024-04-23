@@ -12,6 +12,7 @@ public:
     int setValue(int value);
     int setRegistrador(int reg);
     int getRegistrador(int reg);
+    int getRegistrador();
 };
 
 #endif

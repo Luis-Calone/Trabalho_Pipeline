@@ -14,7 +14,7 @@ public:
     ~Busca();
 
     int setMemReg(int write, int r1, int r2);
-    int getWrite();
+    // int getWrite();
     int getRegA();
     int getRegB();
     //int getMemoryValue();

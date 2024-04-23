@@ -3,12 +3,18 @@
 
 #include <iostream>
 #include "Instruction.h"
-
+#include "Executa.h"
 
 class Armazena : public Instruction
 {
-    
-    // TERMINAR DE CRIAR ESSA CLASSE //
+    Executa *executador;
+
+public:
+    Armazena();
+    ~Armazena();
+
+    int setMemory();
+    int getMemory();
 };
 
 #endif

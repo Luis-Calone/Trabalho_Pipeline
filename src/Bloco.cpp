@@ -9,7 +9,7 @@ Bloco::~Bloco()
     for (auto &i : instructions)
         delete i;
 }
-
+\
 int Bloco::addInstruction(Instruction *instruction)
 {
     if (!instruction)
