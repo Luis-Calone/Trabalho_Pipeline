@@ -18,6 +18,11 @@ Instruction::Instruction(int type, Memory *mem, int position)
 
 Instruction::~Instruction() {}
 
+void Instruction::printMem()
+{
+    this->mem->printMemory();
+}
+
 int Instruction::setMemory(Memory *mem)
 {
     if (!mem)
@@ -33,13 +38,6 @@ int Instruction::setPosition(int position)
         return 0;
 
     this->position = position;
-    return 1;
-}
-
-int Instruction::setCommand(int command)
-{
-    this->command = command;
-
     return 1;
 }
 

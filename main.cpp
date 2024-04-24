@@ -18,35 +18,41 @@ void insereMem(Memory *mem, Busca *a, Decodifica *b, Executa *c, Armazena *d)
 
 void conecta(Busca *a, Decodifica *b, Executa *c, Armazena *d)
 {
-    b->setBusca(a);
-    c->setDecodificador(b);
     d->setExecutador(c);
+    c->setDecodificador(b);
+    b->setBusca(a);
 }
 
 int main()
 {
-    Memory *mem = new Memory;
+    Memory *mem = new Memory();
     Busca *I1 = new Busca();
     Decodifica *I2 = new Decodifica();
     Executa *I3 = new Executa();
     Armazena *I4 = new Armazena();
 
     insereMem(mem, I1, I2, I3, I4);
-
     Bloco *bloco = new Bloco();
 
-    bloco->addInstruction(I1);
-    bloco->addInstruction(I2);
-    bloco->addInstruction(I3);
-    bloco->addInstruction(I4);
+    bloco->configura(I1, I2, I3, I4);
 
-    bloco->setComando(ADD);
-    bloco->setRegistrators(0, 1, 2);
-    bloco->sendReg();
+    bloco->setComando(1);
+    bloco->setRegistrators(2, 6, 7);
 
-    bloco->printInstructions();
+    bloco->executaBusca();
+    bloco->printBusca();
 
-    bloco->~Bloco();
+    bloco->executaDecodifica();
+    bloco->printDecodifica();
+
+    bloco->executaEx();
+    bloco->printExecuta();
+
+    bloco->executaArmazena();
+    bloco->printArmazena();
+
+    bloco->printMemoria();
+
     delete mem;
     delete I1;
     delete I2;

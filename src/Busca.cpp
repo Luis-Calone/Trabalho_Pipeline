@@ -26,7 +26,7 @@ int Busca::getRegA()
     if (this->r1 < 0)
         return -1;
 
-    return this->mem->getRegistrador(this->r1);
+    return this->r1;
 }
 
 int Busca::getRegB()
@@ -34,7 +34,7 @@ int Busca::getRegB()
     if (this->r2 < 0)
         return -1;
 
-    return this->mem->getRegistrador(this->r2);
+    return this->r2;
 }
 
 /*

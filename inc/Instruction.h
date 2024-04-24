@@ -18,7 +18,6 @@ class Instruction
 {
 protected:
     string name;
-    int command;
     int type;
     Memory *mem;
     int position;
@@ -37,6 +36,8 @@ public:
 
     int setType(int type);
     string getType();
+
+    void printMem();
 };
 
 #endif

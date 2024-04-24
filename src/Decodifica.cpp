@@ -16,7 +16,7 @@ int Decodifica::setValueRegA()
     if (this->busca->getRegA() < 0)
         return 0;
 
-    this->valueRegA = this->busca->getRegA();
+    this->valueRegA = this->mem->getRegistrador(this->busca->getRegA());
     return 1;
 }
 
@@ -30,7 +30,7 @@ int Decodifica::setValueRegB()
     if (this->busca->getRegB() < 0)
         return 0;
 
-    this->valueRegB = this->busca->getRegB();
+    this->valueRegB = this->mem->getRegistrador(this->busca->getRegB());
     return 1;
 }
 

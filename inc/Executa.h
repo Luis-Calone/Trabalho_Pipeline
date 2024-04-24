@@ -10,6 +10,7 @@
 class Executa : public Instruction
 {
     Decodifica *decodificador;
+    int op;
     int a;
     int b;
     int result;
@@ -23,7 +24,6 @@ public:
     int setA();
     int setB();
 
-    int chooseOP();
     int times();
     int sub();
     int add();

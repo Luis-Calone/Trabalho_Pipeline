@@ -4,18 +4,17 @@
 
 Bloco::Bloco()
 {
+    this->buscador = NULL;
+    this->decodificador = NULL;
+    this->executador = NULL;
+    this->armazenador = NULL;
     this->comando = -1;
     this->reg0 = -1;
     this->reg1 = -1;
     this->reg2 = -1;
-    this->_I_inBlock = 0;
 }
 
-Bloco::~Bloco()
-{
-    for (auto &i : instructions)
-        delete i;
-}
+Bloco::~Bloco() {}
 
 int Bloco::setRegistrators(int r0, int r1, int r2)
 {
@@ -26,80 +25,108 @@ int Bloco::setRegistrators(int r0, int r1, int r2)
     return 1;
 }
 
-int Bloco::sendReg()
-{
-    if (this->instructions.empty())
-        return 0;
-
-    Instruction *temp = this->instructions.front();
-    temp->setCommand(this->comando);
-
-    if (dynamic_cast<Busca *>(temp))
-        dynamic_cast<Busca *>(temp)->setMemReg(this->reg0, this->reg1, this->reg2);
-}
-
 int Bloco::setComando(int comando)
 {
     this->comando = comando;
     return 1;
 }
 
-int Bloco::addInstruction(Instruction *instruction)
+int Bloco::configura(Busca *buscador, Decodifica *decodificador, Executa *executador, Armazena *armazenador)
 {
-    if (!instruction)
-        return 0;
+    this->buscador = buscador;
+    this->decodificador = decodificador;
+    this->executador = executador;
+    this->armazenador = armazenador;
 
-    this->instructions.push_back(instruction);
-    this->_I_inBlock++;
     return 1;
 }
 
-int Bloco::removeInstruction()
+string Bloco::getComando()
 {
-    if (this->instructions.empty())
-        return 0;
-
-    this->instructions.pop_front();
-    this->_I_inBlock--;
-    return 1;
-}
-
-int Bloco::configura()
-{
-    
-}
-
-void Bloco::printInstructions()
-{
-    for (auto &i : this->instructions)
+    switch (this->comando)
     {
-        if (dynamic_cast<Busca *>(i))
-        {
-            std::cout << "Nome: " << i->getType() << std::endl
-                      << "Comando: " << this->comando << std::endl
-                      << "R0: " << this->reg0 << std::endl
-                      << "R1: " << this->reg1 << std::endl
-                      << "R2: " << this->reg2 << std::endl
-                      << std::endl;
-        }
-        else if (dynamic_cast<Decodifica *>(i))
-        {
-            std::cout << "Nome: " << dynamic_cast<Decodifica *>(i)->getType() << std::endl
-                      << "Valor no Registrador 1: " << dynamic_cast<Decodifica *>(i)->getValueRegA() << std::endl
-                      << "Valor no Registrador 2: " << dynamic_cast<Decodifica *>(i)->getValueRegB() << std::endl
-                      << std::endl;
-        }
-        else if (dynamic_cast<Executa *>(i))
-        {
-            std::cout << "Nome: " << dynamic_cast<Executa *>(i)->getType() << std::endl
-                      << "Resultado da operacao: " << dynamic_cast<Executa *>(i)->getResult() << std::endl
-                      << std::endl;
-        }
-        else if (dynamic_cast<Armazena *>(i))
-        {
-            std::cout << "Nome: " << dynamic_cast<Armazena *>(i)->getType() << std::endl
-                      << "Dado armazenado no registrador: " << this->reg0 << std::endl
-                      << std::endl;
-        }
+    case ADD:
+        return "add";
+    case SUB:
+        return "sub";
+    case MULT:
+        return "mult";
+    default:
+        throw std::runtime_error("COMANDO NAO RECONHECIDO");
     }
+}
+
+void Bloco::executaBusca()
+{
+    this->buscador->setMemReg(this->reg0, this->reg1, this->reg2);
+}
+
+void Bloco::executaDecodifica()
+{
+    this->decodificador->setBusca(this->buscador);
+    this->decodificador->setValueRegA();
+    this->decodificador->setValueRegB();
+}
+
+void Bloco::executaEx()
+{
+    this->executador->setDecodificador(this->decodificador);
+    this->executador->setA();
+    this->executador->setB();
+
+    switch (this->comando)
+    {
+    case ADD:
+        this->executador->add();
+        break;
+    case SUB:
+        this->executador->sub();
+        break;
+    case MULT:
+        this->executador->times();
+        break;
+    }
+}
+
+void Bloco::executaArmazena()
+{
+    this->armazenador->setExecutador(this->executador);
+    this->armazenador->setMemoryV();
+}
+
+void Bloco::printBusca()
+{
+    std::cout << "Instrucao: " << this->buscador->getType() << std::endl
+              << "Comando: " << this->getComando() << std::endl
+              << "R0: " << this->reg0 << std::endl
+              << "R1: " << this->buscador->getRegA() << std::endl
+              << "R2: " << this->buscador->getRegB() << std::endl
+              << std::endl;
+}
+
+void Bloco::printDecodifica()
+{
+    std::cout << "Instrucao: " << this->decodificador->getType() << std::endl
+              << "Comando: " << this->getComando() << std::endl
+              << "Valor R1: " << this->decodificador->getValueRegA() << std::endl
+              << "Valor R2: " << this->decodificador->getValueRegB() << std::endl
+              << std::endl;
+}
+void Bloco::printExecuta()
+{
+    std::cout << "Instrucao: " << this->executador->getType() << std::endl
+              << "Comando: " << this->getComando() << std::endl
+              << "Resultado: " << this->executador->getResult() << std::endl
+              << std::endl;
+}
+void Bloco::printArmazena()
+{
+    std::cout << "Instrucao: " << this->buscador->getType() << std::endl
+              << "Armazenado no registrador: " << this->reg0 << std::endl
+              << std::endl;
+}
+
+void Bloco::printMemoria()
+{
+    this->armazenador->printMem();
 }

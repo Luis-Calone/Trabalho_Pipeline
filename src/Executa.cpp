@@ -12,24 +12,6 @@ Executa::Executa()
 
 Executa::~Executa() {}
 
-int Executa::chooseOP()
-{
-    switch (this->command)
-    {
-    case 0:
-        return Executa::add();
-
-    case 1:
-        return Executa::sub();
-
-    case 2:
-        return Executa::times();
-
-    default:
-        return -1;
-    }
-}
-
 int Executa::setDecodificador(Decodifica *decodificador)
 {
     this->decodificador = decodificador;
@@ -38,19 +20,19 @@ int Executa::setDecodificador(Decodifica *decodificador)
 
 int Executa::add()
 {
-    this->result = this->a + this->b;
+    this->result = (a + b);
     return 1;
 }
 
 int Executa::times()
 {
-    this->result = this->a * this->b;
+    this->result = (a * b);
     return 1;
 }
 
 int Executa::sub()
 {
-    this->result = this->a - this->b;
+    this->result = (a - b);
     return 1;
 }
 
@@ -62,11 +44,11 @@ int Executa::setA()
 
 int Executa::setB()
 {
-    this->a = decodificador->getValueRegA();
+    this->b = decodificador->getValueRegB();
     return 1;
 }
 
 int Executa::getResult()
 {
-    return result;
+    return this->result;
 }

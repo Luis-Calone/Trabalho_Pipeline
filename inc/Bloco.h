@@ -32,24 +32,37 @@ enum comandos
 
 class Bloco
 {
-    std::list<Instruction *> instructions;
+    Busca *buscador;
+    Decodifica *decodificador;
+    Executa *executador;
+    Armazena *armazenador;
     int comando;
     int reg0, reg1, reg2;
-    int _I_inBlock = 0;
 
 public:
     Bloco();
     ~Bloco();
 
-    int configura();
+    int configura(Busca *buscador, Decodifica *decodificador, Executa *executador, Armazena *armazenador);
 
-    int addInstruction(Instruction *instruction);
-    int removeInstruction();
-    void printInstructions();
+    void executaBusca();
+    void printBusca();
 
+    void executaDecodifica();
+    void printDecodifica();
+
+    void executaEx();
+    void printExecuta();
+    
+    void executaArmazena();
+    void printArmazena();
+
+    void printMemoria();
+
+    string getComando();
     int setRegistrators(int r0, int r1, int r2);
     int setComando(int comando);
-    int sendReg();
+    // int sendReg();
 };
 
 #endif
