@@ -1,5 +1,7 @@
 #include <iostream>
 #include <list>
+#include <ctime>
+#include <windows.h>
 #include "inc/Bloco.h"
 #include "inc/Memory.h"
 #include "inc/Instruction.h"
@@ -23,6 +25,7 @@ void conecta(Busca *a, Decodifica *b, Executa *c, Armazena *d)
     b->setBusca(a);
 }
 
+
 int main()
 {
     Memory *mem = new Memory();
@@ -36,22 +39,35 @@ int main()
 
     bloco->configura(I1, I2, I3, I4);
 
-    bloco->setComando(1);
-    bloco->setRegistrators(2, 6, 7);
+    for (int i = 0; i < 3; i++)
+    {
+        bloco->setComando(i);
+        bloco->setRegistrators(i, 6, 7);
 
-    bloco->executaBusca();
-    bloco->printBusca();
+        bloco->executaBusca();
+        bloco->printBusca();
+        system("pause");
+        std::cout << std::endl;
 
-    bloco->executaDecodifica();
-    bloco->printDecodifica();
+        bloco->executaDecodifica();
+        bloco->printDecodifica();
+        system("pause");
+        std::cout << std::endl;
 
-    bloco->executaEx();
-    bloco->printExecuta();
+        bloco->executaEx();
+        bloco->printExecuta();
+        system("pause");
+        std::cout << std::endl;
 
-    bloco->executaArmazena();
-    bloco->printArmazena();
+        bloco->executaArmazena();
+        bloco->printArmazena();
+        system("pause");
+        std::cout << std::endl;
 
-    bloco->printMemoria();
+        bloco->printMemoria();
+        std::cout << std::endl;
+        system("pause");
+    }
 
     delete mem;
     delete I1;
@@ -60,6 +76,5 @@ int main()
     delete I4;
     delete bloco;
 
-    system("pause");
     return EXIT_SUCCESS;
 }
