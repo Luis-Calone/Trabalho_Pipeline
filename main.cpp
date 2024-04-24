@@ -25,6 +25,44 @@ void conecta(Busca *a, Decodifica *b, Executa *c, Armazena *d)
     b->setBusca(a);
 }
 
+void programa(Bloco *bloco, string comando, int reg0, int reg1, int reg2)
+{
+    int c;
+
+    if (comando == "add")
+        c = ADD;
+    else if (comando == "sub")
+        c = SUB;
+    else if (comando == "mult")
+        c = MULT;
+
+    bloco->setComando(c);
+    bloco->setRegistrators(reg0, reg1, reg2);
+
+    bloco->executaBusca();
+    bloco->printBusca();
+    system("pause");
+    std::cout << std::endl;
+
+    bloco->executaDecodifica();
+    bloco->printDecodifica();
+    system("pause");
+    std::cout << std::endl;
+
+    bloco->executaEx();
+    bloco->printExecuta();
+    system("pause");
+    std::cout << std::endl;
+
+    bloco->executaArmazena();
+    bloco->printArmazena();
+    system("pause");
+    std::cout << std::endl;
+
+    bloco->printMemoria();
+    std::cout << std::endl;
+    system("pause");
+}
 
 int main()
 {
@@ -39,35 +77,20 @@ int main()
 
     bloco->configura(I1, I2, I3, I4);
 
-    for (int i = 0; i < 3; i++)
-    {
-        bloco->setComando(i);
-        bloco->setRegistrators(i, 6, 7);
+    std::cout << "Dgite o comando que voce deseja: ";
+    string comando;
+    std::cin >> comando;
 
-        bloco->executaBusca();
-        bloco->printBusca();
-        system("pause");
-        std::cout << std::endl;
+    std::cout << "Dgite o registrador que voce ira guardar o resultado: ";
+    int reg0;
+    std::cin >> reg0;
 
-        bloco->executaDecodifica();
-        bloco->printDecodifica();
-        system("pause");
-        std::cout << std::endl;
+    std::cout << "Dgite os dois registradores que voce ira ler: ";
+    int reg1, reg2;
+    std::cin >> reg1;
+    std::cin >> reg2;
 
-        bloco->executaEx();
-        bloco->printExecuta();
-        system("pause");
-        std::cout << std::endl;
-
-        bloco->executaArmazena();
-        bloco->printArmazena();
-        system("pause");
-        std::cout << std::endl;
-
-        bloco->printMemoria();
-        std::cout << std::endl;
-        system("pause");
-    }
+    programa(bloco, comando, reg0, reg1, reg2);
 
     delete mem;
     delete I1;

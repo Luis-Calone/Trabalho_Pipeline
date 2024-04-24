@@ -62,7 +62,6 @@ public:
     string getComando();
     int setRegistrators(int r0, int r1, int r2);
     int setComando(int comando);
-    // int sendReg();
 };
 
 #endif
